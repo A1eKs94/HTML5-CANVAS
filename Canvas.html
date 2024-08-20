@@ -81,6 +81,16 @@
 
       ctx.fillStyle = grd;
       ctx.fillRect(20, 350, 150, 100);
+
+      const grds = ctx.createRadialGradient(400, 400, 50, 400, 400, 80);
+      grds.addColorStop(0, "red");
+      grds.addColorStop(0.25, "yellow");
+      grds.addColorStop(0.5, "green");
+      grds.addColorStop(0.75, "blue");
+
+      // Dibujar un rectángulo lleno
+      ctx.fillStyle = grds;
+      ctx.fillRect(330, 330, 150, 150);
     </script>
   </body>
 </html>
