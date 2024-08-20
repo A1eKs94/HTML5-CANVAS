@@ -1,32 +1,73 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Canvas</title>
     <style>
-        body{
-            background-color: gray;
-        }
-        canvas{
-            background-color: white;
-        }
+      body {
+        background-color: gray;
+      }
+      canvas {
+        background-color: white;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <canvas id="myCanvas" width="500" height="500"></canvas>
 
     <script>
-        const myCanvas = document.getElementById("myCanvas");
-        const ctx = myCanvas.getContext("2d");
+      const myCanvas = document.getElementById("myCanvas");
+      const ctx = myCanvas.getContext("2d");
 
-        ctx.fillStyle = "Red"
-        ctx.fillRect(20,20,100,100)
-        ctx.fillStyle = "Pink"
-        ctx.fillRect(180,180,100,100)
-        ctx.fillStyle = "Blue"
-        ctx.fillRect(100,100,100,100)
+      ctx.fillStyle = "Red";
+      ctx.fillRect(20, 20, 100, 100);
+      ctx.fillStyle = "Pink";
+      ctx.fillRect(180, 180, 100, 100);
+      ctx.fillStyle = "Blue";
+      ctx.fillRect(100, 100, 100, 100);
+      ctx.fillStyle = "Black";
+      ctx.strokeRect(220, 100, 100, 100);
+      ctx.lineWidth = 5;
+      ctx.strokeStyle = "Red";
+      ctx.strokeRect(220, 300, 100, 100);
+      ctx.lineWidth = 3;
+      ctx.strokeStyle = "Blue";
+      ctx.fillStyle = "#ff8e8e";
+      ctx.beginPath();
+      ctx.moveTo(300, 270);
+      ctx.lineTo(370, 290);
+      ctx.lineTo(330, 210);
+      ctx.fill();
+      ctx.closePath();
+      ctx.stroke();
 
+      ctx.strokeStyle = "Black";
+      ctx.beginPath();
+      ctx.arc(100, 275, 50, 0, 2 * Math.PI);
+      ctx.stroke();
+
+      ctx.strokeStyle = "Green";
+      ctx.beginPath();
+      ctx.arc(440, 275, 50, 0, 2 * Math.PI);
+      ctx.fill();
+      ctx.stroke();
+
+      ctx.strokeStyle = "Black";
+      ctx.fillStyle = "White";
+      ctx.beginPath();
+      ctx.arc(440, 250, 50, 0.2, 0.6 * Math.PI);
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
+
+      ctx.fillStyle = "Red";
+      ctx.font = "50px Georgia";
+      ctx.fillText("Hello World!", 210, 50);
+      ctx.font = "30px Verdana";
+      ctx.font = "50px Georgia";
+      ctx.strokeText("Hello World!", 210, 50);
+      ctx.font = "30px Verdana";
     </script>
-</body>
+  </body>
 </html>
