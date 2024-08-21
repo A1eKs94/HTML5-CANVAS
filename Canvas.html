@@ -20,6 +20,7 @@
       const myCanvas = document.getElementById("myCanvas");
       const ctx = myCanvas.getContext("2d");
 
+      /*
       ctx.fillStyle = "Red";
       ctx.fillRect(20, 20, 100, 100);
       ctx.fillStyle = "Pink";
@@ -91,6 +92,18 @@
       // Dibujar un rectángulo lleno
       ctx.fillStyle = grds;
       ctx.fillRect(330, 330, 150, 150);
+      */
+      // Eventos
+      document
+        .getElementById("myCanvas")
+        .addEventListener("click", function (e) {
+          console.log(e);
+          ctx.fillStyle = "rgba(255, 0, 0, 0.7)";
+          ctx.beginPath();
+          ctx.arc(e.clientX, e.clientY, 50, 0, 2 * Math.PI);
+          ctx.fill();
+          ctx.stroke();
+        });
     </script>
   </body>
 </html>
