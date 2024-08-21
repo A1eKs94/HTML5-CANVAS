@@ -94,18 +94,30 @@
       ctx.fillRect(330, 330, 150, 150);
       */
       // Eventos
+      function getRandomColor() {
+        var letters = "0123456789ABCDEF";
+        var color = "#";
+        for (var i = 0; i < 6; i++) {
+          color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+      }
       document
+        .getElementById("myCanvas")
+        .addEventListener("mouseover", function (e) {
+          console.log(e);
+          ctx.fillStyle = getRandomColor();
+        });
+
+        document
         .getElementById("myCanvas")
         .addEventListener("mousedown", function (e) {
           console.log(e);
-          ctx.fillStyle = "rgba(255, 0, 0, 0.7)";
           ctx.beginPath();
           ctx.arc(e.clientX, e.clientY, 50, 0, 2 * Math.PI);
           ctx.fill();
           ctx.stroke();
         });
-
-        
     </script>
   </body>
 </html>
