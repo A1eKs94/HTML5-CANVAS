@@ -96,7 +96,7 @@
       // Eventos
       document
         .getElementById("myCanvas")
-        .addEventListener("click", function (e) {
+        .addEventListener("mousedown", function (e) {
           console.log(e);
           ctx.fillStyle = "rgba(255, 0, 0, 0.7)";
           ctx.beginPath();
@@ -104,6 +104,8 @@
           ctx.fill();
           ctx.stroke();
         });
+
+        
     </script>
   </body>
 </html>
