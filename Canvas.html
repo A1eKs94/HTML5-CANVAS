@@ -23,6 +23,8 @@
       var figura = 1;
       var fillColor;
       var strokeColor;
+      var isDrawing = false;
+
       /*
       ctx.fillStyle = "Red";
       ctx.fillRect(20, 20, 100, 100);
@@ -117,6 +119,7 @@
       document
         .getElementById("myCanvas")
         .addEventListener("mousedown", function (e) {
+          isDrawing = true;
           ctx.globalAlpha = 0.8;
           ctx.fillStyle = fillColor;
           ctx.strokeStyle = strokeColor;
@@ -137,6 +140,12 @@
 
       document
         .getElementById("myCanvas")
+        .addEventListener("mouseup", function (e) {
+          isDrawing = false;
+        });
+
+      document
+        .getElementById("myCanvas")
         .addEventListener("mouseout", function (e) {
           if (figura == 1) {
             figura = 2;
@@ -148,10 +157,12 @@
       document
         .getElementById("myCanvas")
         .addEventListener("mousemove", function (e) {
-          ctx.fillStyle = "black";
-          ctx.beginPath();
-          ctx.arc(e.x, e.y, 5, 0, 2 * Math.PI);
-          ctx.fill();
+          if (isDrawing) {
+            ctx.fillStyle = "black";
+            ctx.beginPath();
+            ctx.arc(e.x, e.y, 5, 0, 2 * Math.PI);
+            ctx.fill();
+          }
         });
     </script>
   </body>
