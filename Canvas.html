@@ -20,6 +20,9 @@
       const myCanvas = document.getElementById("myCanvas");
       const ctx = myCanvas.getContext("2d");
 
+      var figura = 1;
+      var fillColor;
+      var strokeColor;
       /*
       ctx.fillStyle = "Red";
       ctx.fillRect(20, 20, 100, 100);
@@ -95,8 +98,6 @@
       */
       // Eventos
 
-      var figura = 1;
-
       function getRandomColor() {
         var letters = "0123456789ABCDEF";
         var color = "#";
@@ -105,16 +106,21 @@
         }
         return color;
       }
+
       document
         .getElementById("myCanvas")
         .addEventListener("mouseover", function (e) {
-          ctx.fillStyle = getRandomColor();
-          ctx.strokeStyle = getRandomColor();
+          fillColor = getRandomColor();
+          strokeColor = getRandomColor();
         });
 
       document
         .getElementById("myCanvas")
         .addEventListener("mousedown", function (e) {
+          ctx.globalAlpha = 0.8;
+          ctx.fillStyle = fillColor;
+          ctx.strokeStyle = strokeColor;
+
           if (figura == 1) {
             console.log(e);
             ctx.fillRect(e.x, e.y, 100, 100);
@@ -126,6 +132,7 @@
             ctx.fill();
             ctx.stroke();
           }
+          ctx.globalAlpha = 1.0;
         });
 
       document
@@ -136,6 +143,15 @@
           } else {
             figura = 1;
           }
+        });
+
+      document
+        .getElementById("myCanvas")
+        .addEventListener("mousemove", function (e) {
+          ctx.fillStyle = "black";
+          ctx.beginPath();
+          ctx.arc(e.x, e.y, 5, 0, 2 * Math.PI);
+          ctx.fill();
         });
     </script>
   </body>
