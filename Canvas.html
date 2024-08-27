@@ -116,6 +116,8 @@
           strokeColor = getRandomColor();
         });
 
+      /*
+
       document
         .getElementById("myCanvas")
         .addEventListener("mousedown", function (e) {
@@ -164,6 +166,54 @@
             ctx.fill();
           }
         });
+
+        */
+
+      // Cuadrado que se mueve
+
+      var superX = 100;
+      var superY = 100;
+
+      ctx.fillStyle = "Red";
+      ctx.strokeColor = "Black";
+      ctx.fillRect(superX, superY, 50, 50);
+
+      document.addEventListener("keypress", function (e) {
+        console.log(e.keyCode);
+
+        function paint() {
+          ctx.fillStyle = "white";
+          ctx.fillRect(0, 0, 500, 500);
+        }
+        if (e.keyCode == 119) {
+          superY -= 10;
+          console.log(superY);
+          paint();
+          ctx.fillStyle = "red";
+          ctx.fillRect(superX, superY, 50, 50);
+        }
+        if (e.keyCode == 115) {
+          superY += 10;
+          console.log(superY);
+          paint();
+          ctx.fillStyle = "red";
+          ctx.fillRect(superX, superY, 50, 50);
+        }
+        if (e.keyCode == 97) {
+          superX -= 10;
+          console.log(superY);
+          paint();
+          ctx.fillStyle = "red";
+          ctx.fillRect(superX, superY, 50, 50);
+        }
+        if (e.keyCode == 100) {
+          superX += 10;
+          console.log(superY);
+          paint();
+          ctx.fillStyle = "red";
+          ctx.fillRect(superX, superY, 50, 50);
+        }
+      });
     </script>
   </body>
 </html>
