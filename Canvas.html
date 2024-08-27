@@ -201,18 +201,53 @@
         }
         if (e.keyCode == 97) {
           superX -= 10;
-          console.log(superY);
+          console.log(superX);
           paint();
           ctx.fillStyle = "red";
           ctx.fillRect(superX, superY, 50, 50);
         }
         if (e.keyCode == 100) {
           superX += 10;
+          console.log(superX);
+          paint();
+          ctx.fillStyle = "red";
+          ctx.fillRect(superX, superY, 50, 50);
+        }
+
+        // En caso de que sobre pase los limites
+
+        if (superX < 0){
+          superX = 499;
+          console.log(superX);
+          paint();
+          ctx.fillStyle = "red";
+          ctx.fillRect(superX, superY, 50, 50);
+        }
+
+        if (superX > 500){
+          superX = 0;
+          console.log(superX);
+          paint();
+          ctx.fillStyle = "red";
+          ctx.fillRect(superX, superY, 50, 50);
+        }
+
+        if (superY < 0){
+          superY = 499;
           console.log(superY);
           paint();
           ctx.fillStyle = "red";
           ctx.fillRect(superX, superY, 50, 50);
         }
+
+        if (superY > 500){
+          superY = 0;
+          console.log(superY);
+          paint();
+          ctx.fillStyle = "red";
+          ctx.fillRect(superX, superY, 50, 50);
+        }
+
       });
     </script>
   </body>
