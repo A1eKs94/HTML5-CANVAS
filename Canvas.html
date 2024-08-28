@@ -47,7 +47,8 @@
 
       var superX = 100;
       var superY = 100;
-      var move = '';
+      var move = "";
+      var speed = 5;
 
       ctx.fillStyle = "Red";
       ctx.strokeColor = "Black";
@@ -68,9 +69,30 @@
         if (e.keyCode == 100) {
           move = "right";
         }
+        if (e.keyCode == 32) {
+          speed += 1;
+        }
+      });
+
+      function moveUpdate() {
+        if (move == "up") {
+          superY -= speed;
+          console.log(superY);
+        }
+        if (move == "down") {
+          superY += speed;
+          console.log(superY);
+        }
+        if (move == "left") {
+          superX -= speed;
+          console.log(superX);
+        }
+        if (move == "right") {
+          superX += speed;
+          console.log(superX);
+        }
 
         // En caso de que sobre pase los limites
-
         if (superX < 0) {
           superX = 499;
           console.log(superX);
@@ -90,31 +112,17 @@
           superY = 0;
           console.log(superY);
         }
-      });
-
-      function moveUpdate() {
-        if (move == "up") {
-          superY -= 10;
-          console.log(superY);
-        }
-        if (move == "down") {
-          superY += 10;
-          console.log(superY);
-        }
-        if (move == "left") {
-          superX -= 10;
-          console.log(superX);
-        }
-        if (move == "right") {
-          superX += 10;
-          console.log(superX);
-        }
         paint();
       }
 
       function paint() {
         ctx.fillStyle = "white";
         ctx.fillRect(0, 0, 500, 500);
+
+        ctx.font = "15px";
+        ctx.fillStyle = "black";
+        ctx.fillText("Speed: " + speed, 420, 20);
+
         ctx.fillStyle = "red";
         ctx.fillRect(superX, superY, 50, 50);
         requestAnimationFrame(moveUpdate);
