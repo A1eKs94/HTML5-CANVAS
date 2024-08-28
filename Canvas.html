@@ -25,79 +25,6 @@
       var strokeColor;
       var isDrawing = false;
 
-      /*
-      ctx.fillStyle = "Red";
-      ctx.fillRect(20, 20, 100, 100);
-      ctx.fillStyle = "Pink";
-      ctx.fillRect(180, 180, 100, 100);
-      ctx.fillStyle = "Blue";
-      ctx.fillRect(100, 100, 100, 100);
-      ctx.fillStyle = "Black";
-      ctx.strokeRect(220, 100, 100, 100);
-      ctx.lineWidth = 5;
-      ctx.strokeStyle = "Red";
-      ctx.strokeRect(220, 300, 100, 100);
-      ctx.lineWidth = 3;
-      ctx.strokeStyle = "Blue";
-      ctx.fillStyle = "#ff8e8e";
-      ctx.beginPath();
-      ctx.moveTo(300, 270);
-      ctx.lineTo(370, 290);
-      ctx.lineTo(330, 210);
-      ctx.fill();
-      ctx.closePath();
-      ctx.stroke();
-
-      ctx.strokeStyle = "Black";
-      ctx.beginPath();
-      ctx.arc(100, 275, 50, 0, 2 * Math.PI);
-      ctx.stroke();
-
-      ctx.strokeStyle = "Green";
-      ctx.beginPath();
-      ctx.arc(440, 275, 50, 0, 2 * Math.PI);
-      ctx.fill();
-      ctx.stroke();
-
-      ctx.strokeStyle = "Black";
-      ctx.fillStyle = "White";
-      ctx.beginPath();
-      ctx.arc(440, 250, 50, 0.2, 0.6 * Math.PI);
-      ctx.closePath();
-      ctx.fill();
-      ctx.stroke();
-
-      ctx.fillStyle = "Red";
-      ctx.font = "50px Georgia";
-      ctx.fillText("Hello World!", 210, 50);
-      ctx.font = "30px Verdana";
-      ctx.font = "50px Georgia";
-      ctx.strokeText("Hello World!", 210, 50);
-      ctx.font = "30px Verdana";
-
-      var img1 = new Image();
-      img1.src = "https://cdn-icons-png.flaticon.com/256/4497/4497826.png";
-      img1.onload = function () {
-        ctx.drawImage(img1, 370, 60, 100, 100);
-      };
-
-      const grd = ctx.createLinearGradient(0, 0, 170, 0);
-      grd.addColorStop(0, "Pink");
-      grd.addColorStop(1, "Purple");
-
-      ctx.fillStyle = grd;
-      ctx.fillRect(20, 350, 150, 100);
-
-      const grds = ctx.createRadialGradient(400, 400, 50, 400, 400, 80);
-      grds.addColorStop(0, "red");
-      grds.addColorStop(0.25, "yellow");
-      grds.addColorStop(0.5, "green");
-      grds.addColorStop(0.75, "blue");
-
-      // Dibujar un rectángulo lleno
-      ctx.fillStyle = grds;
-      ctx.fillRect(330, 330, 150, 150);
-      */
       // Eventos
 
       function getRandomColor() {
@@ -116,63 +43,11 @@
           strokeColor = getRandomColor();
         });
 
-      /*
-
-      document
-        .getElementById("myCanvas")
-        .addEventListener("mousedown", function (e) {
-          isDrawing = true;
-          ctx.globalAlpha = 0.8;
-          ctx.fillStyle = fillColor;
-          ctx.strokeStyle = strokeColor;
-
-          if (figura == 1) {
-            console.log(e);
-            ctx.fillRect(e.x, e.y, 100, 100);
-          }
-          if (figura == 2) {
-            console.log(e);
-            ctx.beginPath();
-            ctx.arc(e.x, e.y, 50, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.stroke();
-          }
-          ctx.globalAlpha = 1.0;
-        });
-
-      document
-        .getElementById("myCanvas")
-        .addEventListener("mouseup", function (e) {
-          isDrawing = false;
-        });
-
-      document
-        .getElementById("myCanvas")
-        .addEventListener("mouseout", function (e) {
-          if (figura == 1) {
-            figura = 2;
-          } else {
-            figura = 1;
-          }
-        });
-
-      document
-        .getElementById("myCanvas")
-        .addEventListener("mousemove", function (e) {
-          if (isDrawing) {
-            ctx.fillStyle = "black";
-            ctx.beginPath();
-            ctx.arc(e.x, e.y, 5, 0, 2 * Math.PI);
-            ctx.fill();
-          }
-        });
-
-        */
-
       // Cuadrado que se mueve
 
       var superX = 100;
       var superY = 100;
+      var move = '';
 
       ctx.fillStyle = "Red";
       ctx.strokeColor = "Black";
@@ -181,74 +56,70 @@
       document.addEventListener("keypress", function (e) {
         console.log(e.keyCode);
 
-        function paint() {
-          ctx.fillStyle = "white";
-          ctx.fillRect(0, 0, 500, 500);
-        }
         if (e.keyCode == 119) {
-          superY -= 10;
-          console.log(superY);
-          paint();
-          ctx.fillStyle = "red";
-          ctx.fillRect(superX, superY, 50, 50);
+          move = "up";
         }
         if (e.keyCode == 115) {
-          superY += 10;
-          console.log(superY);
-          paint();
-          ctx.fillStyle = "red";
-          ctx.fillRect(superX, superY, 50, 50);
+          move = "down";
         }
         if (e.keyCode == 97) {
-          superX -= 10;
-          console.log(superX);
-          paint();
-          ctx.fillStyle = "red";
-          ctx.fillRect(superX, superY, 50, 50);
+          move = "left";
         }
         if (e.keyCode == 100) {
-          superX += 10;
-          console.log(superX);
-          paint();
-          ctx.fillStyle = "red";
-          ctx.fillRect(superX, superY, 50, 50);
+          move = "right";
         }
 
         // En caso de que sobre pase los limites
 
-        if (superX < 0){
+        if (superX < 0) {
           superX = 499;
           console.log(superX);
-          paint();
-          ctx.fillStyle = "red";
-          ctx.fillRect(superX, superY, 50, 50);
         }
 
-        if (superX > 500){
+        if (superX > 500) {
           superX = 0;
           console.log(superX);
-          paint();
-          ctx.fillStyle = "red";
-          ctx.fillRect(superX, superY, 50, 50);
         }
 
-        if (superY < 0){
+        if (superY < 0) {
           superY = 499;
           console.log(superY);
-          paint();
-          ctx.fillStyle = "red";
-          ctx.fillRect(superX, superY, 50, 50);
         }
 
-        if (superY > 500){
+        if (superY > 500) {
           superY = 0;
           console.log(superY);
-          paint();
-          ctx.fillStyle = "red";
-          ctx.fillRect(superX, superY, 50, 50);
         }
-
       });
+
+      function moveUpdate() {
+        if (move == "up") {
+          superY -= 10;
+          console.log(superY);
+        }
+        if (move == "down") {
+          superY += 10;
+          console.log(superY);
+        }
+        if (move == "left") {
+          superX -= 10;
+          console.log(superX);
+        }
+        if (move == "right") {
+          superX += 10;
+          console.log(superX);
+        }
+        paint();
+      }
+
+      function paint() {
+        ctx.fillStyle = "white";
+        ctx.fillRect(0, 0, 500, 500);
+        ctx.fillStyle = "red";
+        ctx.fillRect(superX, superY, 50, 50);
+        requestAnimationFrame(moveUpdate);
+      }
+      requestAnimationFrame(paint);
     </script>
   </body>
 </html>
