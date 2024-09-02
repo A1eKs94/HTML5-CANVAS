@@ -19,90 +19,157 @@
     <script>
       const myCanvas = document.getElementById("myCanvas");
       const ctx = myCanvas.getContext("2d");
-      ctx.fillStyle = "#74a6ff";
-      ctx.fillRect(0, 0, myCanvas.width, myCanvas.height);
 
-      // Suelo
-      ctx.fillStyle = "#80572A"; // Brown color
-      ctx.fillRect(0, 800, myCanvas.width, 100);
-      ctx.fillStyle = "#00AA00";
-      ctx.fillRect(0, 780, myCanvas.width, 20);
-      ctx.fillStyle = "#00FF00";
-      ctx.fillRect(0, 760, myCanvas.width, 20);
-
-      // Decorado
-      const blockSize = 80;
-      for (let i = 0; i < myCanvas.width / blockSize; i++) {
-        for (let j = 0; j < 6; j++) {
-          ctx.fillStyle = (i + j) % 2 === 0 ? "#A65014" : "#4A2200";
-          ctx.fillRect(i * blockSize, 800 + j * 20, blockSize, 20);
-        }
-      }
-
-      // Palmeras
-      ctx.fillStyle = "#482b00";
-      ctx.fillRect(360, 360, 50, 400);
-      ctx.fillStyle = "#0e8500";
+      // Oreja izquierda
+      ctx.save();
+      ctx.scale(1, 2);
       ctx.beginPath();
-      ctx.arc(350, 420, 100, 3, 1.7 * Math.PI);
+      ctx.arc(200, 200, 40, 0, Math.PI * 2, true);
+      ctx.fillStyle = "#FDD7B0";
       ctx.fill();
+      ctx.stroke();
+      ctx.restore();
+
+      // Oreja derecha
+      ctx.save();
+      ctx.scale(1, 2);
       ctx.beginPath();
-      ctx.arc(350, 420, 100, 3.5, 2.1 * Math.PI);
+      ctx.arc(600, 200, 40, 0, Math.PI * 2, true);
+      ctx.fillStyle = "#FDD7B0";
       ctx.fill();
+      ctx.stroke();
+      ctx.restore();
+
+      // Cabeza
+      ctx.fillStyle = "#FDD7B0";
       ctx.beginPath();
-      ctx.arc(420, 420, 100, 3.2 * Math.PI, 0.3);
+      ctx.arc(400, 400, 200, 10, Math.PI * 0, true);
       ctx.fill();
+      ctx.stroke();
 
-      ctx.fillStyle = "#482b00";
-      ctx.fillRect(1200, 360, 50, 400);
-      ctx.fillStyle = "#0e8500";
+      ctx.fillStyle = "black";
       ctx.beginPath();
-      ctx.arc(1190, 420, 100, 3, 1.7 * Math.PI);
+      ctx.moveTo(300, 300);
+      ctx.lineTo(350, 300);
+      ctx.lineTo(350, 400);
+      ctx.closePath();
       ctx.fill();
+      ctx.stroke();
       ctx.beginPath();
-      ctx.arc(1190, 420, 100, 3.5, 2.1 * Math.PI);
+      ctx.moveTo(200, 300);
+      ctx.lineTo(250, 300);
+      ctx.lineTo(250, 400);
+      ctx.closePath();
       ctx.fill();
+      ctx.stroke();
       ctx.beginPath();
-      ctx.arc(1250, 420, 100, 3.2 * Math.PI, 0.3);
+      ctx.moveTo(500, 300);
+      ctx.lineTo(580, 300);
+      ctx.lineTo(520, 400);
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
+      ctx.fillStyle = "black";
+      ctx.beginPath();
+      ctx.ellipse(400, 330, 222, 37, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.stroke();
+
+      // Copa del sombrero
+      ctx.fillStyle = "#f1ed00";
+      ctx.beginPath();
+      ctx.arc(400, 300 - 0 / 2, 200, Math.PI, 0, false);
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
+
+      // Cinta roja
+      ctx.fillStyle = "#ff0000";
+      ctx.beginPath();
+      ctx.ellipse(400, 300, 200, 40, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.stroke();
+
+      // Base del sombrero
+      ctx.fillStyle = "#f1ed00";
+      ctx.beginPath();
+      ctx.ellipse(400, 320, 300, 40, 0, 0, Math.PI * 2); // Y + 20
+      ctx.fill();
+      ctx.stroke();
+
+      // Sonrisa
+      ctx.fillStyle = "#ededed";
+
+      const baseHeight = 450 + 40;
+      ctx.beginPath();
+      ctx.arc(405, 450, 140, 0, Math.PI, false);
+      ctx.lineTo(405 - 140, baseHeight);
+      ctx.lineTo(405 + 140, baseHeight);
+      ctx.closePath();
+
+      ctx.fill();
+      ctx.stroke();
+      ctx.fillStyle = "#FDD7B0";
+      ctx.beginPath();
+      ctx.ellipse(400, 480, 180, 50, 0, 0, Math.PI * 2); // (x, y, radioX, radioY, rotación, ángulo inicial, ángulo final)
       ctx.fill();
 
-      // Anillos
-      function drawRing(x, y) {
-        ctx.strokeStyle = "#FFFF00";
-        ctx.lineWidth = 8;
-        ctx.beginPath();
-        ctx.arc(x, y, 36, 0, Math.PI * 2);
-        ctx.stroke();
-      }
+      // Ojo izquierdo
+      ctx.fillStyle = "white";
+      ctx.beginPath();
+      ctx.arc(320, 440, 40, 0, Math.PI * 2, true); // (x, y, radio, ángulo inicial, ángulo final)
+      ctx.fill();
+      ctx.stroke();
 
-      drawRing(600, 600);
-      drawRing(720, 600);
-      drawRing(840, 600);
+      ctx.fillStyle = "black";
+      ctx.beginPath();
+      ctx.arc(320, 440, 20, 0, Math.PI * 2, true);
+      ctx.fill();
+      ctx.stroke();
+      // Ojo derecho
+      ctx.fillStyle = "white";
+      ctx.beginPath();
+      ctx.arc(480, 440, 40, 0, Math.PI * 2, true); // (x, y, radio, ángulo inicial, ángulo final)
+      ctx.fill();
+      ctx.stroke();
 
-      // Girasol
-      function drawSunflower(x, y) {
-        ctx.fillStyle = "#FFFF00";
-        for (let i = 0; i < 12; i++) {
-          ctx.beginPath();
-          ctx.arc(
-            x + Math.cos((i * Math.PI) / 6) * 20,
-            y + Math.sin((i * Math.PI) / 6) * 20,
-            30,
-            0,
-            Math.PI * 2
-          );
-          ctx.fill();
-        }
+      ctx.fillStyle = "black";
+      ctx.beginPath();
+      ctx.arc(480, 440, 20, 0, Math.PI * 2, true);
+      ctx.fill();
+      ctx.stroke();
 
-        ctx.fillStyle = "#6B8E23";
-        ctx.beginPath();
-        ctx.arc(x, y, 30, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.fillStyle = "#008000";
-        ctx.fillRect(x - 6, y, 12, 120);
-      }
+      // Cejas
 
-      drawSunflower(1700, 640);
+      // Cejas izquierdas
+      ctx.strokeStyle = "black";
+      ctx.lineWidth = 5;
+      ctx.beginPath();
+      ctx.moveTo(280, 380);
+      ctx.lineTo(360, 400);
+      ctx.stroke();
+
+      // Cejas derecha
+      ctx.beginPath();
+      ctx.moveTo(440, 400);
+      ctx.lineTo(520, 380);
+      ctx.stroke();
+
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.moveTo(450, 480);
+      ctx.quadraticCurveTo(490, 500, 530, 480); // Punto medio curvado (x1, y1) y final (x2, y2)
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.moveTo(470, 480);
+      ctx.lineTo(470, 500);
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.moveTo(510, 480);
+      ctx.lineTo(510, 500);
+      ctx.stroke();
     </script>
   </body>
 </html>
