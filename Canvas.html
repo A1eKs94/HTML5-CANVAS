@@ -9,125 +9,100 @@
         background-color: gray;
       }
       canvas {
-        background-color: white;
+        background-color: #aad9ff;
       }
     </style>
   </head>
   <body>
-    <canvas id="myCanvas" width="500" height="500"></canvas>
+    <canvas id="myCanvas" width="1000" height="900"></canvas>
 
     <script>
       const myCanvas = document.getElementById("myCanvas");
       const ctx = myCanvas.getContext("2d");
 
-      var figura = 1;
-      var fillColor;
-      var strokeColor;
-      var isDrawing = false;
+      ctx.fillStyle = "#21a700";
+      // Arbusto izquierdo
+      ctx.beginPath();
+      ctx.arc(50, 760, 30, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.arc(70, 760, 30, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.arc(70, 730, 30, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.arc(100, 760, 30, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.arc(120, 715, 30, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.arc(150, 760, 30, 0, Math.PI * 2);
+      ctx.lineWidth = 5;
+      ctx.strokeStyle = "#1a8500";
+      ctx.stroke();
+      ctx.fill();
+      ctx.closePath();
 
-      // Eventos
+      // Arbusto derecho
+      ctx.beginPath();
+      ctx.arc(950, 760, 30, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.arc(900, 760, 30, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.arc(930, 730, 30, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.arc(880, 760, 30, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.arc(870, 715, 30, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.arc(850, 760, 30, 0, Math.PI * 2);
+      ctx.lineWidth = 5;
+      ctx.strokeStyle = "#1a8500";
+      ctx.stroke();
+      ctx.fill();
+      ctx.closePath();
 
-      function getRandomColor() {
-        var letters = "0123456789ABCDEF";
-        var color = "#";
-        for (var i = 0; i < 6; i++) {
-          color += letters[Math.floor(Math.random() * 16)];
-        }
-        return color;
-      }
+      // Pasto
+      ctx.fillStyle = "#784900";
+      ctx.fillRect(0, 850, 1000, 50);
+      ctx.fillStyle = "#1d9200";
+      ctx.fillRect(0, 800, 1000, 50);
+      ctx.fillStyle = "#0f4d00";
+      ctx.fillRect(0, 775, 1000, 25);
 
-      document
-        .getElementById("myCanvas")
-        .addEventListener("mouseover", function (e) {
-          fillColor = getRandomColor();
-          strokeColor = getRandomColor();
-        });
+      // Piso
+      ctx.fillStyle = "#bdbdbd";
+      ctx.fillRect(200, 725, 600, 50);
 
-      // Cuadrado que se mueve
+      // Pared ff9d5a
+      ctx.fillStyle = "#ff9d5a";
+      ctx.fillRect(225, 300, 550, 425);
 
-      var superX = 100;
-      var superY = 100;
-      var move = "";
-      var speed = 5;
+      // Puerta
+      ctx.fillStyle = "#6f4e38";
+      ctx.fillRect(325, 525, 100, 200);
 
-      ctx.fillStyle = "Red";
-      ctx.strokeColor = "Black";
-      ctx.fillRect(superX, superY, 50, 50);
+      // Picaporte
+      ctx.fillStyle = "#ffde62";
+      ctx.beginPath();
+      ctx.arc(400, 650, 10, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.closePath();
 
-      document.addEventListener("keypress", function (e) {
-        console.log(e.keyCode);
+      // Ventana c6f3ff
+      ctx.fillStyle = "#ff3838";
+      ctx.fillRect(495, 470, 150, 150);
+      ctx.fillStyle = "#c6f3ff";
+      ctx.fillRect(505, 480, 60, 60);
+      ctx.fillRect(575, 480, 60, 60);
+      ctx.fillRect(505, 550, 60, 60);
+      ctx.fillRect(575, 550, 60, 60);
 
-        if (e.keyCode == 119) {
-          move = "up";
-        }
-        if (e.keyCode == 115) {
-          move = "down";
-        }
-        if (e.keyCode == 97) {
-          move = "left";
-        }
-        if (e.keyCode == 100) {
-          move = "right";
-        }
-        if (e.keyCode == 32) {
-          speed += 1;
-        }
-      });
-
-      function moveUpdate() {
-        if (move == "up") {
-          superY -= speed;
-          console.log(superY);
-        }
-        if (move == "down") {
-          superY += speed;
-          console.log(superY);
-        }
-        if (move == "left") {
-          superX -= speed;
-          console.log(superX);
-        }
-        if (move == "right") {
-          superX += speed;
-          console.log(superX);
-        }
-
-        // En caso de que sobre pase los limites
-        if (superX < 0) {
-          superX = 499;
-          console.log(superX);
-        }
-
-        if (superX > 500) {
-          superX = 0;
-          console.log(superX);
-        }
-
-        if (superY < 0) {
-          superY = 499;
-          console.log(superY);
-        }
-
-        if (superY > 500) {
-          superY = 0;
-          console.log(superY);
-        }
-        paint();
-      }
-
-      function paint() {
-        ctx.fillStyle = "white";
-        ctx.fillRect(0, 0, 500, 500);
-
-        ctx.font = "15px";
-        ctx.fillStyle = "black";
-        ctx.fillText("Speed: " + speed, 420, 20);
-
-        ctx.fillStyle = "red";
-        ctx.fillRect(superX, superY, 50, 50);
-        requestAnimationFrame(moveUpdate);
-      }
-      requestAnimationFrame(paint);
+      // Techo
+      ctx.fillStyle = "#750000";
+      ctx.beginPath();
+      ctx.moveTo(200, 310);
+      ctx.lineTo(800, 310);
+      ctx.lineTo(500, 100);
+      ctx.fill();
+      ctx.closePath();
     </script>
   </body>
 </html>
