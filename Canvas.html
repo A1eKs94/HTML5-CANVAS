@@ -19,100 +19,90 @@
     <script>
       const myCanvas = document.getElementById("myCanvas");
       const ctx = myCanvas.getContext("2d");
-      // Arbusto izquierdo
-      ctx.fillStyle = "#1a8500";
-      ctx.beginPath();
-      ctx.arc(50, 770, 30, 0, Math.PI * 2);
-      ctx.stroke();
-      ctx.arc(70, 770, 30, 0, Math.PI * 2);
-      ctx.stroke();
-      ctx.arc(70, 740, 30, 0, Math.PI * 2);
-      ctx.stroke();
-      ctx.arc(100, 770, 30, 0, Math.PI * 2);
-      ctx.stroke();
-      ctx.arc(120, 725, 30, 0, Math.PI * 2);
-      ctx.stroke();
-      ctx.arc(150, 770, 30, 0, Math.PI * 2);
-      ctx.lineWidth = 5;
-      ctx.strokeStyle = "#1a8500";
-      ctx.stroke();
-      ctx.fill();
-      ctx.closePath();
+      ctx.fillStyle = "#74a6ff";
+      ctx.fillRect(0, 0, myCanvas.width, myCanvas.height);
 
-      ctx.strokeStyle = "#000000";
-      ctx.lineWidth = 2;
-      // Pasto
-      ctx.fillStyle = "#ffb46e";
-      ctx.fillRect(0, 825, 1800, 75);
-      ctx.strokeRect(0, 825, 1800, 75);
-      ctx.fillStyle = "#ffdbb9";
-      ctx.fillRect(0, 800, 1800, 25);
-      ctx.strokeRect(0, 800, 1800, 25);
+      // Suelo
+      ctx.fillStyle = "#80572A"; // Brown color
+      ctx.fillRect(0, 800, myCanvas.width, 100);
+      ctx.fillStyle = "#00AA00";
+      ctx.fillRect(0, 780, myCanvas.width, 20);
+      ctx.fillStyle = "#00FF00";
+      ctx.fillRect(0, 760, myCanvas.width, 20);
 
-      // Cuadros de fondo
-      ctx.fillStyle = "#008bff";
-      ctx.fillRect(500, 300, 300, 500);
-      ctx.strokeRect(500, 300, 300, 500);
-      ctx.fillStyle = "#ffb34a";
-      ctx.fillRect(300, 500, 300, 300);
-      ctx.strokeRect(300, 500, 300, 300);
-      ctx.fillStyle = "#5ce800";
-      ctx.fillRect(1600, 500, 300, 300);
-      ctx.strokeRect(1600, 500, 300, 300);
+      // Decorado
+      const blockSize = 80;
+      for (let i = 0; i < myCanvas.width / blockSize; i++) {
+        for (let j = 0; j < 6; j++) {
+          ctx.fillStyle = (i + j) % 2 === 0 ? "#A65014" : "#4A2200";
+          ctx.fillRect(i * blockSize, 800 + j * 20, blockSize, 20);
+        }
+      }
 
-      // Tuberia
-      ctx.fillStyle = "#338100";
-      ctx.fillRect(1100, 650, 100, 150);
-      ctx.strokeRect(1100, 650, 100, 150);
-      ctx.fillRect(1075, 650, 150, 50);
-      ctx.strokeRect(1075, 650, 150, 50);
+      // Palmeras
+      ctx.fillStyle = "#482b00";
+      ctx.fillRect(360, 360, 50, 400);
+      ctx.fillStyle = "#0e8500";
+      ctx.beginPath();
+      ctx.arc(350, 420, 100, 3, 1.7 * Math.PI);
+      ctx.fill();
+      ctx.beginPath();
+      ctx.arc(350, 420, 100, 3.5, 2.1 * Math.PI);
+      ctx.fill();
+      ctx.beginPath();
+      ctx.arc(420, 420, 100, 3.2 * Math.PI, 0.3);
+      ctx.fill();
 
-      ctx.fillStyle = "#cfcfcf";
+      ctx.fillStyle = "#482b00";
+      ctx.fillRect(1200, 360, 50, 400);
+      ctx.fillStyle = "#0e8500";
       ctx.beginPath();
-      ctx.arc(310, 510, 7, 0, Math.PI * 2);
-      ctx.stroke();
+      ctx.arc(1190, 420, 100, 3, 1.7 * Math.PI);
       ctx.fill();
-      ctx.closePath();
       ctx.beginPath();
-      ctx.arc(590, 510, 7, 0, Math.PI * 2);
-      ctx.stroke();
+      ctx.arc(1190, 420, 100, 3.5, 2.1 * Math.PI);
       ctx.fill();
-      ctx.closePath();
       ctx.beginPath();
-      ctx.arc(310, 790, 7, 0, Math.PI * 2);
-      ctx.stroke();
+      ctx.arc(1250, 420, 100, 3.2 * Math.PI, 0.3);
       ctx.fill();
-      ctx.closePath();
-      ctx.beginPath();
-      ctx.arc(590, 790, 7, 0, Math.PI * 2);
-      ctx.stroke();
-      ctx.fill();
-      ctx.closePath();
-      ctx.beginPath();
-      ctx.arc(510, 310, 7, 0, Math.PI * 2);
-      ctx.stroke();
-      ctx.fill();
-      ctx.closePath();
-      ctx.beginPath();
-      ctx.arc(790, 310, 7, 0, Math.PI * 2);
-      ctx.stroke();
-      ctx.fill();
-      ctx.closePath();
-      ctx.beginPath();
-      ctx.arc(790, 790, 7, 0, Math.PI * 2);
-      ctx.stroke();
-      ctx.fill();
-      ctx.closePath();
-      ctx.beginPath();
-      ctx.arc(1610, 510, 7, 0, Math.PI * 2);
-      ctx.stroke();
-      ctx.fill();
-      ctx.closePath();
-      ctx.beginPath();
-      ctx.arc(1610, 790, 7, 0, Math.PI * 2);
-      ctx.stroke();
-      ctx.fill();
-      ctx.closePath();
+
+      // Anillos
+      function drawRing(x, y) {
+        ctx.strokeStyle = "#FFFF00";
+        ctx.lineWidth = 8;
+        ctx.beginPath();
+        ctx.arc(x, y, 36, 0, Math.PI * 2);
+        ctx.stroke();
+      }
+
+      drawRing(600, 600);
+      drawRing(720, 600);
+      drawRing(840, 600);
+
+      // Girasol
+      function drawSunflower(x, y) {
+        ctx.fillStyle = "#FFFF00";
+        for (let i = 0; i < 12; i++) {
+          ctx.beginPath();
+          ctx.arc(
+            x + Math.cos((i * Math.PI) / 6) * 20,
+            y + Math.sin((i * Math.PI) / 6) * 20,
+            30,
+            0,
+            Math.PI * 2
+          );
+          ctx.fill();
+        }
+
+        ctx.fillStyle = "#6B8E23";
+        ctx.beginPath();
+        ctx.arc(x, y, 30, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = "#008000";
+        ctx.fillRect(x - 6, y, 12, 120);
+      }
+
+      drawSunflower(1700, 640);
     </script>
   </body>
 </html>
