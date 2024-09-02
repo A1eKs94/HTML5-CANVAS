@@ -14,93 +14,103 @@
     </style>
   </head>
   <body>
-    <canvas id="myCanvas" width="1000" height="900"></canvas>
+    <canvas id="myCanvas" width="1800" height="900"></canvas>
 
     <script>
       const myCanvas = document.getElementById("myCanvas");
       const ctx = myCanvas.getContext("2d");
-
-      ctx.fillStyle = "#21a700";
       // Arbusto izquierdo
+      ctx.fillStyle = "#1a8500";
       ctx.beginPath();
-      ctx.arc(50, 760, 30, 0, Math.PI * 2);
+      ctx.arc(50, 770, 30, 0, Math.PI * 2);
       ctx.stroke();
-      ctx.arc(70, 760, 30, 0, Math.PI * 2);
+      ctx.arc(70, 770, 30, 0, Math.PI * 2);
       ctx.stroke();
-      ctx.arc(70, 730, 30, 0, Math.PI * 2);
+      ctx.arc(70, 740, 30, 0, Math.PI * 2);
       ctx.stroke();
-      ctx.arc(100, 760, 30, 0, Math.PI * 2);
+      ctx.arc(100, 770, 30, 0, Math.PI * 2);
       ctx.stroke();
-      ctx.arc(120, 715, 30, 0, Math.PI * 2);
+      ctx.arc(120, 725, 30, 0, Math.PI * 2);
       ctx.stroke();
-      ctx.arc(150, 760, 30, 0, Math.PI * 2);
+      ctx.arc(150, 770, 30, 0, Math.PI * 2);
       ctx.lineWidth = 5;
       ctx.strokeStyle = "#1a8500";
       ctx.stroke();
       ctx.fill();
       ctx.closePath();
 
-      // Arbusto derecho
-      ctx.beginPath();
-      ctx.arc(950, 760, 30, 0, Math.PI * 2);
-      ctx.stroke();
-      ctx.arc(900, 760, 30, 0, Math.PI * 2);
-      ctx.stroke();
-      ctx.arc(930, 730, 30, 0, Math.PI * 2);
-      ctx.stroke();
-      ctx.arc(880, 760, 30, 0, Math.PI * 2);
-      ctx.stroke();
-      ctx.arc(870, 715, 30, 0, Math.PI * 2);
-      ctx.stroke();
-      ctx.arc(850, 760, 30, 0, Math.PI * 2);
-      ctx.lineWidth = 5;
-      ctx.strokeStyle = "#1a8500";
-      ctx.stroke();
-      ctx.fill();
-      ctx.closePath();
-
+      ctx.strokeStyle = "#000000";
+      ctx.lineWidth = 2;
       // Pasto
-      ctx.fillStyle = "#784900";
-      ctx.fillRect(0, 850, 1000, 50);
-      ctx.fillStyle = "#1d9200";
-      ctx.fillRect(0, 800, 1000, 50);
-      ctx.fillStyle = "#0f4d00";
-      ctx.fillRect(0, 775, 1000, 25);
+      ctx.fillStyle = "#ffb46e";
+      ctx.fillRect(0, 825, 1800, 75);
+      ctx.strokeRect(0, 825, 1800, 75);
+      ctx.fillStyle = "#ffdbb9";
+      ctx.fillRect(0, 800, 1800, 25);
+      ctx.strokeRect(0, 800, 1800, 25);
 
-      // Piso
-      ctx.fillStyle = "#bdbdbd";
-      ctx.fillRect(200, 725, 600, 50);
+      // Cuadros de fondo
+      ctx.fillStyle = "#008bff";
+      ctx.fillRect(500, 300, 300, 500);
+      ctx.strokeRect(500, 300, 300, 500);
+      ctx.fillStyle = "#ffb34a";
+      ctx.fillRect(300, 500, 300, 300);
+      ctx.strokeRect(300, 500, 300, 300);
+      ctx.fillStyle = "#5ce800";
+      ctx.fillRect(1600, 500, 300, 300);
+      ctx.strokeRect(1600, 500, 300, 300);
 
-      // Pared ff9d5a
-      ctx.fillStyle = "#ff9d5a";
-      ctx.fillRect(225, 300, 550, 425);
+      // Tuberia
+      ctx.fillStyle = "#338100";
+      ctx.fillRect(1100, 650, 100, 150);
+      ctx.strokeRect(1100, 650, 100, 150);
+      ctx.fillRect(1075, 650, 150, 50);
+      ctx.strokeRect(1075, 650, 150, 50);
 
-      // Puerta
-      ctx.fillStyle = "#6f4e38";
-      ctx.fillRect(325, 525, 100, 200);
-
-      // Picaporte
-      ctx.fillStyle = "#ffde62";
+      ctx.fillStyle = "#cfcfcf";
       ctx.beginPath();
-      ctx.arc(400, 650, 10, 0, Math.PI * 2);
+      ctx.arc(310, 510, 7, 0, Math.PI * 2);
+      ctx.stroke();
       ctx.fill();
       ctx.closePath();
-
-      // Ventana c6f3ff
-      ctx.fillStyle = "#ff3838";
-      ctx.fillRect(495, 470, 150, 150);
-      ctx.fillStyle = "#c6f3ff";
-      ctx.fillRect(505, 480, 60, 60);
-      ctx.fillRect(575, 480, 60, 60);
-      ctx.fillRect(505, 550, 60, 60);
-      ctx.fillRect(575, 550, 60, 60);
-
-      // Techo
-      ctx.fillStyle = "#750000";
       ctx.beginPath();
-      ctx.moveTo(200, 310);
-      ctx.lineTo(800, 310);
-      ctx.lineTo(500, 100);
+      ctx.arc(590, 510, 7, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.fill();
+      ctx.closePath();
+      ctx.beginPath();
+      ctx.arc(310, 790, 7, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.fill();
+      ctx.closePath();
+      ctx.beginPath();
+      ctx.arc(590, 790, 7, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.fill();
+      ctx.closePath();
+      ctx.beginPath();
+      ctx.arc(510, 310, 7, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.fill();
+      ctx.closePath();
+      ctx.beginPath();
+      ctx.arc(790, 310, 7, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.fill();
+      ctx.closePath();
+      ctx.beginPath();
+      ctx.arc(790, 790, 7, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.fill();
+      ctx.closePath();
+      ctx.beginPath();
+      ctx.arc(1610, 510, 7, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.fill();
+      ctx.closePath();
+      ctx.beginPath();
+      ctx.arc(1610, 790, 7, 0, Math.PI * 2);
+      ctx.stroke();
       ctx.fill();
       ctx.closePath();
     </script>
