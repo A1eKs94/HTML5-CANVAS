@@ -19,12 +19,35 @@
     <script>
       const myCanvas = document.getElementById("myCanvas");
       const ctx = myCanvas.getContext("2d");
-
       var figura = 1;
       var fillColor;
       var strokeColor;
       var isDrawing = false;
 
+      class Rectangulo {
+        constructor(alto, ancho, x, y, color, speed) {
+          this.alto = alto;
+          this.ancho = ancho;
+          this.x = x;
+          this.y = y;
+          this.color = color;
+          this.speed = speed;
+        }
+
+        colision(Rectangulo) {
+          if (player.x < target.x + 10 && 
+          player.x + 50 > target.x && 
+          player.y < target.y + 10 && 
+          player.y + 50 > target.y) {
+          console.log("colision")
+          return true;
+        }
+          return false;
+        }
+      }
+
+      var player = new Rectangulo(50, 50, 100, 100, "red", 5);
+      var target = new Rectangulo(10, 10, 150, 150, "black", 0);
       // Eventos
 
       function getRandomColor() {
@@ -45,17 +68,14 @@
 
       // Cuadrado que se mueve
 
-      var superX = 100;
-      var superY = 100;
       var move = "";
-      var speed = 5;
 
       ctx.fillStyle = "Red";
       ctx.strokeColor = "Black";
-      ctx.fillRect(superX, superY, 50, 50);
+      ctx.fillRect(player.x, player.y, 50, 50);
 
       document.addEventListener("keypress", function (e) {
-        console.log(e.keyCode);
+        
 
         if (e.keyCode == 119) {
           move = "up";
@@ -70,47 +90,45 @@
           move = "right";
         }
         if (e.keyCode == 32) {
-          speed += 1;
+          player.speed += 1;
         }
       });
 
       function moveUpdate() {
         if (move == "up") {
-          superY -= speed;
-          console.log(superY);
+          player.y -= player.speed;
         }
         if (move == "down") {
-          superY += speed;
-          console.log(superY);
+          player.y += player.speed;
         }
         if (move == "left") {
-          superX -= speed;
-          console.log(superX);
+          player.x -= player.speed;
         }
         if (move == "right") {
-          superX += speed;
-          console.log(superX);
+          player.x += player.speed;
         }
 
         // En caso de que sobre pase los limites
-        if (superX < 0) {
-          superX = 499;
-          console.log(superX);
+        if (player.x < 0) {
+          player.x = 499;
         }
 
-        if (superX > 500) {
-          superX = 0;
-          console.log(superX);
+        if (player.x > 500) {
+          player.x = 0;
         }
 
-        if (superY < 0) {
-          superY = 499;
-          console.log(superY);
+        if (player.y < 0) {
+          player.y = 499;
         }
 
-        if (superY > 500) {
-          superY = 0;
-          console.log(superY);
+        if (player.y > 500) {
+          player.y = 0;
+        }
+        
+        // Al colisionar
+        if (player.colision(true)) {
+          target.x = Math.floor(Math.random() * 500);
+          target.y = Math.floor(Math.random() * 500);
         }
         paint();
       }
@@ -121,12 +139,18 @@
 
         ctx.font = "15px";
         ctx.fillStyle = "black";
-        ctx.fillText("Speed: " + speed, 420, 20);
+        ctx.fillText("Speed: " + player.speed, 420, 20);
 
-        ctx.fillStyle = "red";
-        ctx.fillRect(superX, superY, 50, 50);
+        // Jugador
+        ctx.fillStyle = player.color;
+        ctx.fillRect(player.x, player.y, player.alto, player.ancho);
+
+        // Target
+        ctx.fillStyle = target.color;
+        ctx.fillRect(target.x, target.y, target.alto, target.ancho);
         requestAnimationFrame(moveUpdate);
       }
+
       requestAnimationFrame(paint);
     </script>
   </body>
