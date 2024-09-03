@@ -19,10 +19,6 @@
     <script>
       const myCanvas = document.getElementById("myCanvas");
       const ctx = myCanvas.getContext("2d");
-      var figura = 1;
-      var fillColor;
-      var strokeColor;
-      var isDrawing = false;
 
       class Rectangulo {
         constructor(alto, ancho, x, y, color, speed) {
@@ -34,49 +30,24 @@
           this.speed = speed;
         }
 
-        colision(Rectangulo) {
-          if (player.x < target.x + 10 && 
-          player.x + 50 > target.x && 
-          player.y < target.y + 10 && 
-          player.y + 50 > target.y) {
-          console.log("colision")
-          return true;
-        }
-          return false;
+        colision(otro) {
+          return (
+            this.x < otro.x + otro.ancho &&
+            this.x + this.ancho > otro.x &&
+            this.y < otro.y + otro.alto &&
+            this.y + this.alto > otro.y
+          );
         }
       }
 
       var player = new Rectangulo(50, 50, 100, 100, "red", 5);
       var target = new Rectangulo(10, 10, 150, 150, "black", 0);
-      // Eventos
+      var wall = new Rectangulo(100, 30, 200, 200, "blue", 0);
 
-      function getRandomColor() {
-        var letters = "0123456789ABCDEF";
-        var color = "#";
-        for (var i = 0; i < 6; i++) {
-          color += letters[Math.floor(Math.random() * 16)];
-        }
-        return color;
-      }
-
-      document
-        .getElementById("myCanvas")
-        .addEventListener("mouseover", function (e) {
-          fillColor = getRandomColor();
-          strokeColor = getRandomColor();
-        });
-
-      // Cuadrado que se mueve
-
+      var points = 0;
       var move = "";
 
-      ctx.fillStyle = "Red";
-      ctx.strokeColor = "Black";
-      ctx.fillRect(player.x, player.y, 50, 50);
-
       document.addEventListener("keypress", function (e) {
-        
-
         if (e.keyCode == 119) {
           move = "up";
         }
@@ -95,6 +66,9 @@
       });
 
       function moveUpdate() {
+        let prevX = player.x;
+        let prevY = player.y;
+
         if (move == "up") {
           player.y -= player.speed;
         }
@@ -108,46 +82,57 @@
           player.x += player.speed;
         }
 
-        // En caso de que sobre pase los limites
+        // En caso de que sobrepase los límites
         if (player.x < 0) {
           player.x = 499;
         }
-
         if (player.x > 500) {
           player.x = 0;
         }
-
         if (player.y < 0) {
           player.y = 499;
         }
-
         if (player.y > 500) {
           player.y = 0;
         }
-        
-        // Al colisionar
-        if (player.colision(true)) {
-          target.x = Math.floor(Math.random() * 500);
-          target.y = Math.floor(Math.random() * 500);
+
+        // Al colisionar con el target
+        if (player.colision(target)) {
+          target.x = Math.floor(Math.random() * 490);
+          target.y = Math.floor(Math.random() * 490);
+          points += 1;
         }
+
+        // Al colisionar con wall
+        if (player.colision(wall)) {
+          player.x = prevX;
+          player.y = prevY;
+          move = "";
+        }
+
         paint();
       }
 
       function paint() {
-        ctx.fillStyle = "white";
-        ctx.fillRect(0, 0, 500, 500);
+        ctx.clearRect(0, 0, 500, 500);
 
-        ctx.font = "15px";
+        ctx.font = "20px Arial";
         ctx.fillStyle = "black";
-        ctx.fillText("Speed: " + player.speed, 420, 20);
+        ctx.fillText("Speed: " + player.speed, 400, 20);
+        ctx.fillText("Points: " + points, 20, 20);
 
         // Jugador
         ctx.fillStyle = player.color;
-        ctx.fillRect(player.x, player.y, player.alto, player.ancho);
+        ctx.fillRect(player.x, player.y, player.ancho, player.alto);
 
         // Target
         ctx.fillStyle = target.color;
-        ctx.fillRect(target.x, target.y, target.alto, target.ancho);
+        ctx.fillRect(target.x, target.y, target.ancho, target.alto);
+
+        // Pared
+        ctx.fillStyle = wall.color;
+        ctx.fillRect(wall.x, wall.y, wall.ancho, wall.alto);
+
         requestAnimationFrame(moveUpdate);
       }
 
