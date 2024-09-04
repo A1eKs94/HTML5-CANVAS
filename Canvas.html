@@ -42,7 +42,13 @@
 
       var player = new Rectangulo(50, 50, 100, 100, "red", 5);
       var target = new Rectangulo(10, 10, 150, 150, "black", 0);
-      var wall = new Rectangulo(100, 30, 200, 200, "blue", 0);
+
+      var walls = [];
+      walls.push(new Rectangulo(100, 30, 0, 200, "blue", 0));
+      walls.push(new Rectangulo(100, 30, 250, 200, "blue", 0));
+      walls.push(new Rectangulo(100, 30, 470, 200, "blue", 0));
+      walls.push(new Rectangulo(30, 300, 100, 20, "blue", 0));
+      walls.push(new Rectangulo(30, 300, 100, 450, "blue", 0));
 
       var points = 0;
       var move = "";
@@ -104,11 +110,13 @@
         }
 
         // Al colisionar con wall
-        if (player.colision(wall)) {
-          player.x = prevX;
-          player.y = prevY;
-          move = "";
-        }
+        walls.forEach(function (wall, indice, array) {
+          if (player.colision(wall)) {
+            player.x = prevX;
+            player.y = prevY;
+            move = "";
+          }
+        });
 
         paint();
       }
@@ -130,8 +138,10 @@
         ctx.fillRect(target.x, target.y, target.ancho, target.alto);
 
         // Pared
-        ctx.fillStyle = wall.color;
-        ctx.fillRect(wall.x, wall.y, wall.ancho, wall.alto);
+        walls.forEach(function (wall, indice, array) {
+          ctx.fillStyle = wall.color;
+          ctx.fillRect(wall.x, wall.y, wall.ancho, wall.alto);
+        });
 
         requestAnimationFrame(moveUpdate);
       }
