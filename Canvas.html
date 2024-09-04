@@ -40,6 +40,7 @@
         }
       }
 
+      var pause = false;
       var player = new Rectangulo(50, 50, 100, 100, "red", 5);
       var target = new Rectangulo(10, 10, 150, 150, "black", 0);
 
@@ -67,7 +68,7 @@
           move = "right";
         }
         if (e.keyCode == 32) {
-          player.speed += 1;
+          pause = !pause;
         }
       });
 
@@ -75,17 +76,21 @@
         let prevX = player.x;
         let prevY = player.y;
 
-        if (move == "up") {
-          player.y -= player.speed;
-        }
-        if (move == "down") {
-          player.y += player.speed;
-        }
-        if (move == "left") {
-          player.x -= player.speed;
-        }
-        if (move == "right") {
-          player.x += player.speed;
+        if (!pause) {
+          if (move == "up") {
+            player.y -= player.speed;
+          }
+          if (move == "down") {
+            player.y += player.speed;
+          }
+          if (move == "left") {
+            player.x -= player.speed;
+          }
+          if (move == "right") {
+            player.x += player.speed;
+          }
+        } else {
+          move = "";
         }
 
         // En caso de que sobrepase los límites
@@ -144,6 +149,13 @@
         });
 
         requestAnimationFrame(moveUpdate);
+        if (pause) {
+          ctx.font = "50px Arial";
+          ctx.fillStyle = "black";
+          ctx.fillText("P A U S A", 150, 200);
+          ctx.fillStyle = "rgba(32, 45, 21, 0.3)";
+          ctx.fillRect(0, 0, 500, 500);
+        }
       }
 
       requestAnimationFrame(paint);
