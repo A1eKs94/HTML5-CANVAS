@@ -20,6 +20,10 @@
       const myCanvas = document.getElementById("myCanvas");
       const ctx = myCanvas.getContext("2d");
 
+      const playerImage = new Image();
+      playerImage.src = "mario.png";
+      const targetSound = new Audio("mario-coin.mp3");
+
       class Rectangulo {
         constructor(alto, ancho, x, y, color, speed) {
           this.alto = alto;
@@ -89,8 +93,6 @@
           if (move == "right") {
             player.x += player.speed;
           }
-        } else {
-          move = "";
         }
 
         // En caso de que sobrepase los límites
@@ -111,6 +113,7 @@
         if (player.colision(target)) {
           target.x = Math.floor(Math.random() * 490);
           target.y = Math.floor(Math.random() * 490);
+          targetSound.play();
           points += 1;
         }
 
@@ -135,8 +138,14 @@
         ctx.fillText("Points: " + points, 20, 20);
 
         // Jugador
-        ctx.fillStyle = player.color;
-        ctx.fillRect(player.x, player.y, player.ancho, player.alto);
+
+        ctx.drawImage(
+          playerImage,
+          player.x,
+          player.y,
+          player.ancho,
+          player.alto
+        );
 
         // Target
         ctx.fillStyle = target.color;
